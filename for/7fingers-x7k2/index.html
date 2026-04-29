@@ -412,7 +412,7 @@ ul li::before {
   line-height: 1.5;
 }
 .edit-box textarea:focus {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--ink);
   outline-offset: -1px;
   border-color: transparent;
 }
@@ -440,7 +440,7 @@ ul li::before {
   margin-top: 8px;
 }
 .open-feedback textarea:focus {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--ink);
   outline-offset: -1px;
   border-color: transparent;
 }
@@ -459,7 +459,7 @@ ul li::before {
 }
 .open-feedback input[type="text"]:focus,
 .open-feedback input[type="email"]:focus {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--ink);
   outline-offset: -1px;
   border-color: transparent;
 }
@@ -752,7 +752,7 @@ details.accordion .format-grid {
 </div>
 
 <p class="alt-formats">
-  Prefer another format? <a href="#" id="pdf-link">Download PDF</a> · <a href="#" id="doc-link">Open in Google Doc</a>
+  Prefer another format? <a href="#" id="pdf-link">Download PDF</a> · <a href="https://docs.google.com/document/d/1BUpXQprYi_aFvz2Divuslvnc18r9Q0RvYcdmq_21By8/edit?usp=sharing" id="doc-link" target="_blank" rel="noopener">Open in Google Doc</a>
 </p>
 
 <div class="questions-section">
@@ -1062,7 +1062,6 @@ renderQuestions();
 
 
 document.getElementById('pdf-link').href = '/for/7fingers-x7k2/proposal.pdf';
-document.getElementById('doc-link').href = '#';
 </script>
 </body>
 </html>
