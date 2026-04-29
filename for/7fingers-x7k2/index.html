@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The Circus Stories — for The 7 Fingers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #FF5757;
+  --red-soft: #FFE3E0;
+  --dark: #2A2420;
+  --warm-white: #F7F2EA;
+  --paper: #FBF8F2;
+  --ink: #1A1612;
+  --ink-soft: #5A524C;
+  --ink-mute: #8B847D;
+  --line: rgba(42,36,32,0.10);
+  --line-strong: rgba(42,36,32,0.22);
+  --good: #2D6B3E;
+  --good-bg: #E5F0E2;
+  --warn: #8A5A1F;
+  --warn-bg: #F5E8CD;
+  --danger: #993C1D;
+  --danger-bg: #FAE3DD;
+  --r-sm: 4px;
+  --r: 8px;
+  --r-lg: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--warm-white);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 36px 28px 96px;
+}
+
+.brand-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r);
+  background: var(--red);
+  flex-shrink: 0;
+  background-image: url('data:image/png;base64,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');
+  background-size: cover;
+  background-position: center;
+}
+.brand-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  font-weight: 400;
+}
+.brand-text strong { font-weight: 500; }
+.brand-text .dim { color: var(--ink-mute); }
+
+.cover {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 32px;
+  margin-bottom: 32px;
+}
+h1.cover-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  color: var(--dark);
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+.from-line {
+  font-size: 13px;
+  color: var(--ink-mute);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 0;
+  letter-spacing: 0.01em;
+}
+.cover-sub {
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  max-width: 600px;
+}
+.cover-meta {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 56px;
+  font-size: 13px;
+}
+.cover-meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.cover-meta span {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+.cover-meta strong {
+  font-weight: 500;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.quick-access {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.quick-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+.quick-link:hover {
+  border-color: var(--ink-soft);
+  background: white;
+}
+.quick-link .icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+section { margin-bottom: 56px; }
+
+h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  color: var(--dark);
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  margin-top: 24px;
+  color: var(--ink);
+}
+p {
+  margin-bottom: 14px;
+  color: var(--ink-soft);
+}
+p strong, li strong { color: var(--ink); font-weight: 500; }
+ul {
+  list-style: none;
+  margin-bottom: 14px;
+}
+ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  color: var(--ink-soft);
+}
+ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--ink-mute);
+}
+
+.about-text p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.interviewees {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 24px 28px;
+}
+.tier-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+.interviewees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px 28px;
+}
+.interviewee {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.interviewee strong {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.interviewee span {
+  font-size: 12px;
+  color: var(--ink-mute);
+  line-height: 1.4;
+}
+.tier-spacer { margin-top: 22px; }
+
+.format-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.format-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 14px 16px;
+}
+.format-card .label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.format-card .value {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.usage {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 8px 28px;
+}
+.usage-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.usage-row:last-child { border-bottom: none; }
+.usage-row .channel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.01em;
+}
+.usage-row .detail {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.callout {
+  background: var(--red-soft);
+  border-left: 3px solid var(--red);
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  border-radius: 0 var(--r) var(--r) 0;
+}
+.callout p { color: var(--ink); margin-bottom: 0; line-height: 1.55; }
+
+.notdo-list {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px 28px;
+}
+.notdo-list ul li::before {
+  content: "✕";
+  font-weight: 500;
+  color: var(--danger);
+  font-size: 12px;
+  top: 1px;
+}
+
+.questions-intro {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px 28px;
+  margin-bottom: 24px;
+}
+.questions-intro p:last-child { margin-bottom: 0; }
+
+.question-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+  margin-bottom: 14px;
+  transition: border-color 0.15s;
+}
+.question-card:hover { border-color: var(--line-strong); }
+.q-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.q-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--red);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  min-width: 30px;
+}
+.q-text {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+.approval-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.approval-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  padding: 7px 14px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.12s;
+  font-weight: 500;
+}
+.approval-btn:hover {
+  border-color: var(--ink-soft);
+  color: var(--ink);
+}
+.approval-btn.active-good {
+  background: var(--good-bg);
+  border-color: var(--good);
+  color: var(--good);
+}
+.approval-btn.active-warn {
+  background: var(--warn-bg);
+  border-color: var(--warn);
+  color: var(--warn);
+}
+.approval-btn.active-danger {
+  background: var(--danger-bg);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.edit-box {
+  margin-top: 12px;
+  display: none;
+}
+.edit-box.show { display: block; }
+.edit-box textarea {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 12px 14px;
+  min-height: 76px;
+  resize: vertical;
+  line-height: 1.5;
+}
+.edit-box textarea:focus {
+  outline: 2px solid var(--red);
+  outline-offset: -1px;
+  border-color: transparent;
+}
+
+.open-feedback {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px 28px;
+  margin-top: 28px;
+}
+.open-feedback h3 { margin-top: 0; }
+.open-feedback textarea {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 12px 14px;
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+.open-feedback textarea:focus {
+  outline: 2px solid var(--red);
+  outline-offset: -1px;
+  border-color: transparent;
+}
+.open-feedback input[type="text"],
+.open-feedback input[type="email"] {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 11px 14px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.open-feedback input[type="text"]:focus,
+.open-feedback input[type="email"]:focus {
+  outline: 2px solid var(--red);
+  outline-offset: -1px;
+  border-color: transparent;
+}
+.open-feedback label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-mute);
+  font-weight: 500;
+  display: block;
+  margin-top: 8px;
+}
+
+.submit-section {
+  margin-top: 36px;
+  text-align: center;
+}
+.submit-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 14px 36px;
+  border-radius: var(--r);
+  border: none;
+  background: var(--red);
+  color: white;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.01em;
+}
+.submit-btn:hover {
+  background: #E84545;
+}
+.submit-btn:disabled {
+  background: var(--ink-mute);
+  cursor: not-allowed;
+}
+.submit-status {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-mute);
+}
+.submit-status.success { color: var(--good); }
+.submit-status.error { color: var(--danger); }
+
+.timeline {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 8px 28px;
+}
+.timeline-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.timeline-row:last-child { border-bottom: none; }
+.timeline-row .when {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--red);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.timeline-row .what {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.contacts {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+.contact strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.contact .role {
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin-bottom: 8px;
+}
+.contact a {
+  display: block;
+  color: var(--red);
+  text-decoration: none;
+  font-size: 13px;
+  margin-bottom: 2px;
+  font-family: 'DM Mono', monospace;
+}
+.contact a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+
+
+
+.tldr {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--red);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 16px 22px;
+  margin-bottom: 14px;
+}
+.tldr-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.tldr p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 0;
+}
+.short-about {
+  margin-bottom: 14px;
+}
+.short-about p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 0;
+}
+.alt-formats {
+  font-size: 13px;
+  color: var(--ink-mute);
+  margin-bottom: 28px;
+  margin-top: 4px;
+}
+.alt-formats a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 1px;
+  margin: 0 4px;
+  transition: border-color 0.15s;
+}
+.alt-formats a:hover { border-color: var(--red); }
+.more-detail-divider {
+  margin-top: 56px;
+  margin-bottom: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.more-detail-divider h2 {
+  margin-bottom: 8px;
+}
+.more-detail-divider p {
+  font-size: 14px;
+  color: var(--ink-mute);
+  margin-bottom: 0;
+}
+details.accordion {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+details.accordion:hover { border-color: var(--line-strong); }
+details.accordion summary {
+  padding: 18px 24px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: var(--dark);
+  font-weight: 400;
+  transition: background 0.12s;
+}
+details.accordion summary::-webkit-details-marker { display: none; }
+details.accordion summary::after {
+  content: '+';
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink-mute);
+  margin-left: 12px;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+details.accordion[open] summary::after {
+  content: '−';
+}
+details.accordion summary:hover { background: rgba(255,255,255,0.4); }
+details.accordion .accordion-body {
+  padding: 4px 24px 22px;
+}
+details.accordion .accordion-body > *:first-child { margin-top: 8px; }
+details.accordion .interviewees,
+details.accordion .usage,
+details.accordion .timeline,
+details.accordion .contacts,
+details.accordion .notdo-list,
+details.accordion .callout,
+details.accordion .format-grid {
+  margin-bottom: 12px;
+}
+.questions-section {
+  margin-bottom: 56px;
+}
+
+
+.tldr-pointer {
+  font-size: 13px;
+  margin-top: 12px;
+  margin-bottom: 0;
+  color: var(--ink-mute);
+}
+.tldr-pointer .scroll-link {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 1px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.tldr-pointer .scroll-link:hover {
+  color: var(--ink);
+  border-color: var(--red);
+}
+
+@media (max-width: 600px) {
+  .container { padding: 36px 20px 80px; }
+  h1.cover-title { font-size: 40px; }
+  .cover-sub { font-size: 15px; }
+  h2 { font-size: 24px; }
+  .usage-row, .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+  .timeline-row .when { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="brand-bar">
+  <div class="brand-logo"></div>
+  <div class="brand-text"><strong>thecircusstories</strong> <span class="dim">/ for / 7fingers</span></div>
+</div>
+
+<div class="cover">
+  <h1 class="cover-title">Interview proposal for Louis Bourgaut, Head of Casting at The 7 Fingers</h1>
+  <p class="from-line">From — Alicia &amp; Deelia (Founders, The Circus Stories · Performers, Duo Illumi)</p>
+</div>
+
+<div class="short-about">
+  <p>The Circus Stories is about the practical knowledge and stories of working in circus — casting, contracts, mental health, and how to make a life of this. Collected through interviews, the What Does Circus Pay survey, and a career course by Alicia and Deelia of Duo Illumi.</p>
+</div>
+
+<div class="tldr">
+  <div class="tldr-label">What we're hoping for</div>
+  <p>A 30-min to 1-hour recorded interview with Louis. Fifteen questions sent in advance, with as many covered on the day as time allows. We edit, we send 7 Fingers every clip and quote for sign-off, nothing publishes without written approval. Content goes to Instagram, YouTube and the project website (launching summer 2026), our newsletter, and a career course for performers (later this year). Recording in May or June, publication from July.</p>
+  <p class="tldr-pointer"><span class="scroll-link" onclick="document.getElementById('more-detail').scrollIntoView({behavior:'smooth',block:'start'});">More on format, timeline, and approval below the questions ↓</span></p>
+</div>
+
+<p class="alt-formats">
+  Prefer another format? <a href="#" id="pdf-link">Download PDF</a> · <a href="#" id="doc-link">Open in Google Doc</a>
+</p>
+
+<div class="questions-section">
+<section id="questions">
+  <h2 style="margin-bottom: 18px;">The 15 questions</h2>
+  <div class="questions-intro">
+    <p style="margin-bottom: 10px;">Most performers we know would love a real answer to at least one of these. They're the questions that keep coming up backstage.</p>
+    <p style="margin-bottom: 0;">Approve, edit, or remove each question as you go. If something else is blocking a yes to the interview, tell us. We'd love to find a way.</p>
+  </div>
+
+  <div id="questions-list"></div>
+
+  <div class="open-feedback">
+    <h3>Anything else</h3>
+    <p style="font-size: 14px; margin-bottom: 0;">Topics 7 Fingers would prefer we cover instead of, or in addition to, the questions above. Or anything else for us to know before we record.</p>
+    <textarea id="open-feedback-text" placeholder="Optional — questions to add, topics to swap in, things to flag..."></textarea>
+
+    <label for="reviewer-name">Your name</label>
+    <input type="text" id="reviewer-name" placeholder="So we know who reviewed this">
+    <label for="reviewer-role">Role at The 7 Fingers</label>
+    <input type="text" id="reviewer-role" placeholder="Optional">
+    <label for="reviewer-email">Email for follow-up</label>
+    <input type="email" id="reviewer-email" placeholder="Optional">
+  </div>
+
+  <div class="submit-section">
+    <button class="submit-btn" id="submit-btn" onclick="submitDecisions()">Send decisions to Alicia &amp; Deelia</button>
+    <div class="submit-status" id="submit-status">Or just reply by email — both work.</div>
+  </div>
+</section>
+</div>
+
+<div class="more-detail-divider" id="more-detail">
+  <h2>More detail</h2>
+  <p>Click any section below to expand.</p>
+</div>
+
+<details class="accordion">
+  <summary>What this is</summary>
+  <div class="accordion-body">
+    <div class="about-text">
+    <p>Most of how this industry works isn't taught anywhere. Especially if you didn't come up through the circus school path. Pay rates, how casting decides, what to ask before signing, how to have a sustainable career. Performers learn it the slow way: through bad contracts, late-night conversations, the friend who was three years ahead.</p>
+    <p>That's what The Circus Stories is for. We run the What Does Circus Pay survey, interview people across the industry, and are building a career course. We want to create useful resources for performers, and beyond that share the kinds of stories most people never hear about this work. By Alicia and Deelia of Duo Illumi, performers ourselves.</p>
+  </div>
+  </div>
+</details>
+
+<details class="accordion">
+  <summary>Who's been interviewed</summary>
+  <div class="accordion-body">
+    <div class="interviewees">
+    <div class="tier-label">Recorded or scheduled with confirmed dates</div>
+    <div class="interviewees-grid">
+      <div class="interviewee"><strong>Stacy Clark</strong><span>Former Director of Casting, Cirque du Soleil</span></div>
+      <div class="interviewee"><strong>Ben Lerman</strong><span>Founder, Acro Factory Entertainment · agent and aerial director</span></div>
+      <div class="interviewee"><strong>Bryan Donaldson</strong><span>Rigger, multi-show experience</span></div>
+      <div class="interviewee"><strong>Tim Kriegler</strong><span>Cirque de Demain silver medalist · Staatliche Artistenschule Berlin</span></div>
+      <div class="interviewee"><strong>Maria Konfektova</strong><span>Aerial hoop · Guinness World Record holder</span></div>
+      <div class="interviewee"><strong>Saffi Watson</strong><span>Contortion-handstand and aerial · ENC Montreal graduate</span></div>
+      <div class="interviewee"><strong>Emilia Dawiec</strong><span>Aerial hoop and disco-ball hair suspension · ÉSAC Brussels graduate</span></div>
+      <div class="interviewee"><strong>James Kingsford-Smith</strong><span>Acrobat and aerialist · NICA graduate · Sochi Paralympics</span></div>
+      <div class="interviewee"><strong>Diana Salles</strong><span>Aerial silks · ÉSAC Brussels graduate · creator of DELUSIONAL</span></div>
+      <div class="interviewee"><strong>Daniel Simu</strong><span>Juggler and interdisciplinary artist · NCCA London · creator of Acrobot</span></div>
+      <div class="interviewee"><strong>Julian McTaggart</strong><span>Aerial straps and acro · NECCA graduate · Dragone TERHAL</span></div>
+    </div>
+    <div class="tier-spacer">
+      <div class="tier-label">In conversation</div>
+      <p style="font-size: 14px; color: var(--ink-soft); margin: 0;">Additional casting directors, producers and artistic directors. Names available on request.</p>
+    </div>
+  </div>
+  </div>
+</details>
+
+<details class="accordion">
+  <summary>Format and length</summary>
+  <div class="accordion-body">
+    <div class="format-grid">
+    <div class="format-card"><div class="label">Length</div><div class="value">30 mins to 1 hour</div></div>
+    <div class="format-card"><div class="label">Platform</div><div class="value">Riverside / Zoom</div></div>
+    <div class="format-card"><div class="label">Recording</div><div class="value">Video and audio</div></div>
+    <div class="format-card"><div class="label">Questions</div><div class="value">Sent in advance</div></div>
+  </div>
+  <p>If at any point The 7 Fingers prefers Louis to speak in a personal capacity rather than as Head of Casting at the company, we're happy to adjust the framing.</p>
+  </div>
+</details>
+
+<details class="accordion">
+  <summary>Where the content goes</summary>
+  <div class="accordion-body">
+    <div class="usage">
+    <div class="usage-row">
+      <div class="channel">YouTube</div>
+      <div class="detail">Multiple 8–12 minute episodes per interview, plus YouTube Shorts. Channel launching summer 2026. A future possibility: longer compilation videos bundling multiple casting conversations — only with separate sign-off from each interviewee.</div>
+    </div>
+    <div class="usage-row">
+      <div class="channel">Instagram</div>
+      <div class="detail">Reels (30–90 seconds), carousels with pull-quotes, photo-quote posts. Published on @thecircusstories.</div>
+    </div>
+    <div class="usage-row">
+      <div class="channel">Course</div>
+      <div class="detail">Quoted with attribution inside Act to Income, our paid course for performers, launching end of 2026.</div>
+    </div>
+    <div class="usage-row">
+      <div class="channel">Newsletter</div>
+      <div class="detail">Quoted excerpts in the project's email newsletter to subscribers.</div>
+    </div>
+    <div class="usage-row">
+      <div class="channel">Website</div>
+      <div class="detail">Written companion piece on the project website.</div>
+    </div>
+  </div>
+  </div>
+</details>
+
+<details class="accordion">
+  <summary>Approval &amp; publishing</summary>
+  <div class="accordion-body">
+    <div class="callout">
+    <p>Every piece of content that includes Louis or references The 7 Fingers is sent to the company for written approval before publication. Nothing goes live without explicit sign-off, per piece. Approval can be granted, revised, or revoked at any stage before publication.</p>
+  </div>
+  <p>Once we've edited the recording, we send 7 Fingers everything in one batch: the long-form video, every short clip, every carousel, every pull-quote graphic, the website article. The team reviews per piece. Anything not approved doesn't get used.</p>
+  <p>If something is approved and circumstances change, the company can revoke approval before publication and we won't publish it. The interview rushes are kept and shared with the company on request.</p>
+  <p><strong>A note on reusing content.</strong> Once a clip or quote has been approved and published, we'd like to repost it later in different formats. For example, an approved YouTube clip turned into a Reel, or a quote pulled into the newsletter or course. The content stays the same, just shows up in a different place. If we'd ever want to use something in a way that changes the meaning or framing, we'd come back and ask.</p>
+  </div>
+</details>
+
+<details class="accordion">
+  <summary>What we won't do</summary>
+  <div class="accordion-body">
+    <div class="notdo-list">
+    <ul>
+      <li>Publish anything from this interview before written approval from The 7 Fingers</li>
+      <li>Use Louis's words, image or The 7 Fingers' name in any third-party advertising, sponsorship, or commercial promotion</li>
+      <li>Frame the interview as exclusive 7 Fingers casting reveals or any framing that could damage the company's reputation</li>
+      <li>Release outtakes, raw footage, or any material that wasn't explicitly approved</li>
+      <li>Use AI or editing to alter what was said beyond standard length and clarity edits, which are also subject to approval</li>
+      <li>Sell access to the interview itself or lock it behind a paywall</li>
+    </ul>
+  </div>
+  <p style="margin-top: 14px; font-size: 14px; color: var(--ink-soft);"><strong style="color: var(--ink);">Note on the course.</strong> The career course will be paid, but every quote and clip used in it will also be available for free on YouTube, Instagram, and the website. Not as lead magnets or behind email signups — just published as freely available content.</p>
+  </div>
+</details>
+
+<details class="accordion">
+  <summary>Timeline</summary>
+  <div class="accordion-body">
+    <div class="timeline">
+    <div class="timeline-row">
+      <div class="when">April–May 2026</div>
+      <div class="what">Hoping for approval back from 7 Fingers in this window</div>
+    </div>
+    <div class="timeline-row">
+      <div class="when">May / June 2026</div>
+      <div class="what">Recording, at any time that works for Louis</div>
+    </div>
+    <div class="timeline-row">
+      <div class="when">June onwards</div>
+      <div class="what">Editing begins. We send 7 Fingers everything in one batch — long-form, clips, quotes — for review.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="when">Review window</div>
+      <div class="what">Whatever time 7 Fingers needs. We'd be hoping for around 2 weeks but no rush from our side.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="when">July onwards</div>
+      <div class="what">Publication of interview content begins, on a schedule that works for everyone.</div>
+    </div>
+  </div>
+  </div>
+</details>
+
+
+<section class="contacts-section" style="margin-top: 56px;">
+  <h2>Contacts</h2>
+  <div class="contacts" style="grid-template-columns: 1fr;">
+    <div class="contact">
+      <strong>Alicia &amp; Deelia</strong>
+      <div class="role">Founders, The Circus Stories · Performers, Duo Illumi</div>
+      <div style="margin-top: 6px;">
+        <a href="mailto:info@duoillumi.com">info@duoillumi.com</a>
+        <a href="https://instagram.com/thecircusstories">@thecircusstories</a>
+        <a href="https://instagram.com/duo_illumi">@duo_illumi</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  The Circus Stories · Proposal for The 7 Fingers · Confidential
+</footer>
+
+</div>
+
+<script>
+const questions = [
+  "Tell us about a moment watching someone where you knew, before the act was over, that you wanted them in a 7 Fingers show. What were they doing?",
+  "Talking about bios and act descriptions. When a performer writes about their act or what they're trying to do as an artist — what makes you want to know more about them, and what reads as filler? What do you want to learn from those few sentences, or what makes you care?",
+  "How busy are you in a typical week? How many applications, videos, messages come through? And honestly — does it ever happen that you overlook someone because of the volume?",
+  "Walk us through what happens after someone uploads a profile to the 7 Fingers casting database. Who looks at it, when, how often, and what changes a profile from sitting there to getting pulled into a show? What's missing in most profiles, and any no-gos?",
+  "Someone's about to do their first 7 Fingers audition. Walk us through the day — what's the format, what are they asked to do, how long do they have, what do most people not realise they're being watched on?",
+  "Do you follow performers' progress — their training, what they're posting, where they're working? What makes you start, and what makes you stay invested?",
+  "Most duos aren't perfectly matched. One person has more experience, or one has the louder stage presence, or one is technically further along. From your side — how matched does a duo need to be for you to take them seriously? At what point is the gap a problem?",
+  "How can a performer get an outside eye on their work from a casting head? What does asking well look like, and what makes you give a sentence rather than ignore the message?",
+  "The Broadway production of Water for Elephants had a circus ensemble. Most of those performers had worked with 7 Fingers before. For a circus performer who isn't already in your world — how does someone get into the running for a 7 Fingers Broadway project?",
+  "When you say no to someone, what does it mean? A no for that show, a no for that year, a no forever? And what can change a no to a yes?",
+  "When a performer with a 7 Fingers contract gets injured, what does the company do for them while they're not working? And once they're back to performing — do they come back to 7 Fingers, and if so how does the process look?",
+  "Performers stop performing for all kinds of reasons. Inside 7 Fingers, is there room to move into other roles — casting, directing, rigging, choreography? And how does that usually start?",
+  "You were performing before this. How did you end up in casting? What's something you used to think when you were the one applying that turned out to be wrong?",
+  "What do performers do thinking it's networking with you, that on your end reads as noise?",
+  "Closing — most useful piece of advice for a first application."
+];
+
+const decisions = {};
+const editTexts = {};
+
+function renderQuestions() {
+  const list = document.getElementById('questions-list');
+  list.innerHTML = questions.map((q, i) => `
+    <div class="question-card" data-q="${i}">
+      <div class="q-header">
+        <div class="q-num">Q${String(i+1).padStart(2,'0')}</div>
+        <div class="q-text">${q}</div>
+      </div>
+      <div class="approval-row">
+        <button class="approval-btn" data-action="good" data-q="${i}">Approved as written</button>
+        <button class="approval-btn" data-action="warn" data-q="${i}">Approve with edit</button>
+        <button class="approval-btn" data-action="danger" data-q="${i}">Remove</button>
+      </div>
+      <div class="edit-box" data-edit="${i}">
+        <textarea placeholder="Suggest the edited version of this question here..."></textarea>
+      </div>
+    </div>
+  `).join('');
+
+  document.querySelectorAll('.approval-btn').forEach(btn => {
+    btn.addEventListener('click', handleDecision);
+  });
+  document.querySelectorAll('.edit-box textarea').forEach(t => {
+    t.addEventListener('input', e => {
+      const card = e.target.closest('.question-card');
+      const i = parseInt(card.dataset.q);
+      editTexts[i] = e.target.value;
+    });
+  });
+}
+
+function handleDecision(e) {
+  const i = parseInt(e.target.dataset.q);
+  const action = e.target.dataset.action;
+  const card = e.target.closest('.question-card');
+  decisions[i] = action;
+  card.querySelectorAll('.approval-btn').forEach(b => {
+    b.classList.remove('active-good', 'active-warn', 'active-danger');
+  });
+  e.target.classList.add('active-' + action);
+  const editBox = card.querySelector('.edit-box');
+  if (action === 'warn') {
+    editBox.classList.add('show');
+  } else {
+    editBox.classList.remove('show');
+  }
+}
+
+async function submitDecisions() {
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('submit-status');
+  btn.disabled = true;
+  status.textContent = 'Sending...';
+  status.className = 'submit-status';
+
+  const payload = {
+    submittedAt: new Date().toISOString(),
+    reviewer: {
+      name: document.getElementById('reviewer-name').value,
+      role: document.getElementById('reviewer-role').value,
+      email: document.getElementById('reviewer-email').value
+    },
+    decisions: questions.map((q, i) => ({
+      number: i + 1,
+      question: q,
+      decision: decisions[i] || 'pending',
+      edit: editTexts[i] || null
+    })),
+    additionalFeedback: document.getElementById('open-feedback-text').value
+  };
+
+  try {
+    const res = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('Submit failed');
+    status.textContent = 'Sent. Alicia and Deelia have your decisions and will follow up shortly.';
+    status.className = 'submit-status success';
+    btn.textContent = 'Sent';
+  } catch (err) {
+    status.innerHTML = 'Something went wrong sending. Please copy your responses and email <a href="mailto:info@duoillumi.com" style="color: var(--red);">info@duoillumi.com</a> directly.';
+    status.className = 'submit-status error';
+    btn.disabled = false;
+  }
+}
+
+renderQuestions();
+
+
+
+document.getElementById('pdf-link').href = '/for/7fingers-x7k2/proposal.pdf';
+document.getElementById('doc-link').href = '#';
+</script>
+</body>
+</html>

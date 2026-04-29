@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Pack Your Suitcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+:root{--bg:#F7F2EA;--text:#2A2420;--muted:#7a7068;--accent:#FF5757;--red-dark:#c9402d;--green:#3a7d44;--lime:#C4E34D;--border:#d8d0c4;--card:#ffffff;--gamebg:#ffffff;--warn:#FF5757;--peach:#FFDAC6}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow:auto;min-height:100dvh;width:100vw;display:flex;flex-direction:column;align-items:center;padding:32px 16px}
+
+/* PAGE TEXT */
+.page-top{text-align:center;max-width:480px;margin-bottom:24px}
+.page-top h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,5vw,2.4rem);font-weight:400;letter-spacing:1px;line-height:1.1;margin-bottom:10px;text-transform:uppercase}
+.page-top p{font-family:'DM Sans',sans-serif;font-size:clamp(.8rem,2.2vw,.9rem);color:var(--muted);line-height:1.7}
+.page-bottom{text-align:center;max-width:480px;margin-top:24px}
+.page-bottom p{font-family:'DM Sans',sans-serif;font-size:clamp(.75rem,2vw,.82rem);color:var(--muted);line-height:1.8}
+.page-bottom a{color:var(--text);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* GAME WRAPPER */
+#gw{
+  width:100%;max-width:520px;
+  border:1px solid var(--border);border-radius:14px;
+  box-shadow:0 2px 20px rgba(0,0,0,.06);
+  overflow:hidden;position:relative;
+  transition:height 0.4s ease;
+  background:var(--gamebg);
+}
+#gw.state-start{height:280px}
+#gw.state-countdown{height:280px}
+#gw.state-game{height:480px}
+#gw.state-result{height:auto;max-height:none}
+@media(max-width:550px){
+  body{padding:24px 12px}
+  #gw.state-start{height:260px}
+  #gw.state-countdown{height:260px}
+  #gw.state-game{height:420px}
+}
+
+.scr{display:none;flex-direction:column;height:100%;position:relative}.scr.on{display:flex}
+
+/* START */
+#ss{align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center;height:100%}
+#ss h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5.5vw,2.6rem);font-weight:400;letter-spacing:1px;line-height:1.1;text-transform:uppercase}
+#ss .sub{font-family:'DM Sans',sans-serif;font-size:clamp(.72rem,2vw,.82rem);color:var(--muted);max-width:340px;line-height:1.7}
+.sico{font-size:2.2rem;margin-bottom:-4px}
+.btn{font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;padding:10px 28px;border:2px solid var(--text);background:var(--text);color:var(--bg);border-radius:8px;cursor:pointer;transition:all .12s}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}.btn:active{transform:scale(.96)}
+.kh{font-family:'DM Sans',sans-serif;font-size:.65rem;color:var(--muted);margin-top:-2px}
+
+/* COUNTDOWN */
+#cs{align-items:center;justify-content:center;height:100%}
+.countdown-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;font-weight:400;color:var(--text);animation:countPop .4s ease}
+.countdown-go{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;font-weight:400;color:var(--accent);animation:countPop .3s ease;text-transform:uppercase}
+.countdown-hint{font-family:'DM Sans',sans-serif;font-size:.78rem;color:var(--muted);margin-top:12px}
+@keyframes countPop{0%{transform:scale(1.6);opacity:0}100%{transform:scale(1);opacity:1}}
+
+/* GAME */
+#gs{height:100%}
+.hud{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:1px solid var(--border);background:var(--gamebg);z-index:20;flex-shrink:0}
+.ht{font-family:'DM Sans',sans-serif;font-size:1.3rem;font-weight:500;min-width:36px}.ht.urg{color:var(--accent)}
+.hr{text-align:right;line-height:1.3}
+.hi{font-family:'DM Sans',sans-serif;font-size:.72rem;color:var(--muted)}
+.hw{font-family:'DM Sans',sans-serif;font-size:.68rem;color:var(--muted)}.hw.ov{color:var(--red-dark);font-weight:600}
+.bar{height:2px;background:var(--border);z-index:20;flex-shrink:0}.brf{height:100%;background:var(--text);transition:width .25s;width:0%}.brf.ov{background:var(--warn)}.brf.wo{background:var(--accent)}
+.ga{flex:1;position:relative;overflow:hidden;min-height:0}
+.ic{position:absolute;background:var(--card);border:1.5px solid var(--border);border-radius:8px;padding:6px 12px;display:flex;align-items:center;gap:7px;cursor:pointer;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.04);z-index:1}
+.ic:hover{border-color:#aaa;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.ic .ii{font-size:1rem;flex-shrink:0;width:20px;text-align:center}.ic .inn{font-size:clamp(.72rem,1.8vw,.85rem);font-weight:600}
+.ic.grb{border-color:var(--green);background:#f2f8f3;pointer-events:none;animation:grb .28s ease forwards;z-index:10}
+@keyframes grb{0%{transform:scale(1);opacity:1}50%{transform:scale(1.1)}100%{transform:scale(.5) translateY(20px);opacity:0}}
+.ic.mis{pointer-events:none;animation:mis .35s ease forwards}@keyframes mis{to{opacity:0;transform:scale(.9)}}
+.ic.shk{animation:sk .2s ease}@keyframes sk{0%,100%{transform:translateX(0)}33%{transform:translateX(-3px)}66%{transform:translateX(3px)}}
+.pb{border-top:1px solid var(--border);padding:6px 12px;display:flex;align-items:center;gap:5px;min-height:34px;background:var(--gamebg);z-index:20;flex-shrink:0;flex-wrap:wrap}
+.pb .pl{font-size:.8rem}
+.pis{display:flex;gap:2px;flex-wrap:wrap;flex:1}
+.pd{width:16px;height:16px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.55rem;background:#eeece7;border:1px solid var(--border);animation:pp .12s ease}
+.pd.ok{background:#e8f5e9;border-color:#b2d8b8}.pd.ex{background:#fff3e0;border-color:#e8c57a}
+@keyframes pp{0%{transform:scale(0)}100%{transform:scale(1)}}
+
+/* RESULTS */
+#rs{padding:20px 16px 24px;gap:11px;align-items:center;overflow-y:auto}
+#rs h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4.5vw,2.2rem);font-weight:400;letter-spacing:1px;text-align:center;text-transform:uppercase}
+.rbdg{font-family:'DM Sans',sans-serif;font-size:.78rem;padding:3px 12px;border:1.5px solid var(--text);border-radius:16px}
+.rdsc{font-family:'DM Sans',sans-serif;font-size:.75rem;color:var(--muted);text-align:center;max-width:340px;line-height:1.7}
+.share-card{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;max-width:340px;width:100%;text-align:center}
+.share-card .big-num{font-family:'DM Sans',sans-serif;font-size:1.6rem;font-weight:700;line-height:1}
+.share-card .big-label{font-family:'DM Sans',sans-serif;font-size:.68rem;color:var(--muted);margin-top:3px}
+.share-stats{display:flex;justify-content:center;gap:16px;margin-top:10px}
+.share-stat{text-align:center}.share-stat .sn{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700}
+.share-stat .sl{font-family:'DM Sans',sans-serif;font-size:.6rem;color:var(--muted);margin-top:2px}
+.share-stat .sn.neg{color:var(--red-dark)}.share-stat .sn.grn{color:var(--green)}
+.share-pct{margin-top:10px;font-family:'DM Sans',sans-serif;font-size:.73rem;color:var(--red-dark);font-weight:600;line-height:1.5}
+.share-pct.none{color:var(--green)}
+.res-cols{display:flex;gap:10px;width:100%;max-width:460px;flex-wrap:wrap;justify-content:center}
+.res-col{flex:1;min-width:200px;max-width:220px}
+.res-col h3{font-family:'DM Sans',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:5px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.ri{display:flex;align-items:flex-start;gap:5px;padding:4px 0;font-size:.75rem;line-height:1.3;border-bottom:1px solid #f4f1ec}
+.ri .rx{font-size:.9rem;flex-shrink:0;width:18px;text-align:center;margin-top:1px}
+.ri .rn{font-weight:600}.ri .rm{font-family:'DM Sans',sans-serif;font-size:.65rem;color:var(--muted);margin-top:1px}
+.ri.em .rn{color:var(--red-dark)}.ri.gd .rn{color:var(--green)}
+.packed-strip{max-width:460px;width:100%}
+.packed-strip h3{font-family:'DM Sans',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:5px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.packed-icons-result{display:flex;flex-wrap:wrap;gap:3px}
+.pir{width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.75rem;background:#f4f1ec;border:1px solid var(--border);position:relative;cursor:default}
+.pir.ess{background:#e8f5e9;border-color:#b2d8b8}
+.pir .pir-tip{display:none;position:absolute;bottom:110%;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);font-family:'DM Sans',sans-serif;font-size:.6rem;padding:2px 7px;border-radius:4px;white-space:nowrap;z-index:10}
+.pir:hover .pir-tip{display:block}
+.ct{margin-top:2px;padding:12px;border:1px solid var(--border);border-radius:9px;text-align:center;max-width:340px;width:100%;background:var(--card)}
+.ct p{font-family:'DM Sans',sans-serif;font-size:.7rem;color:var(--muted);line-height:1.7}
+.ct a{font-weight:600;color:var(--text);text-decoration:underline;text-underline-offset:3px}
+.ct .st{font-size:.65rem;color:var(--muted);margin-top:3px;display:block}
+.bo{background:transparent;border:1.5px solid var(--text);color:var(--text);margin-top:8px;font-size:.82rem;padding:9px 24px}
+.bo:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.bill{background:var(--card);border:1.5px solid var(--border);border-radius:9px;padding:12px 14px;max-width:340px;width:100%;font-family:'DM Sans',sans-serif;font-size:.75rem}
+.br{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f0ede8}
+.br:last-child{border:none;font-weight:700;padding-top:5px;margin-top:2px;border-top:1.5px solid var(--border)}
+.br .neg{color:var(--red-dark)}.br .ok{color:var(--green)}
+</style>
+</head>
+<body>
+
+<div class="page-top">
+  <h1>Every circus performer has done this at 2am before a flight.</h1>
+  <p>23 kg. 25 seconds. Good luck.</p>
+</div>
+
+<div id="gw" class="state-start">
+<div id="ss" class="scr on">
+<div class="sico">🧳</div>
+<h1>Pack your suitcase.</h1>
+<p class="sub">3-month touring contract. You leave tomorrow. Your contract covers 23 kg. Everything extra comes out of your fee.</p>
+<button class="btn" onclick="startCountdown()">Start packing</button>
+<span class="kh">25 seconds · tap items to grab them</span>
+</div>
+<div id="cs" class="scr">
+<div id="countdown-display"></div>
+<div class="countdown-hint">tap items to pack them</div>
+</div>
+<div id="gs" class="scr">
+<div class="hud"><div class="ht" id="tm">25</div><div class="hr"><div class="hi" id="hi">0 items · 0 kg</div><div class="hw" id="hw"></div></div></div>
+<div class="bar"><div class="brf" id="bf"></div></div>
+<div class="ga" id="ga"></div>
+<div class="pb"><span class="pl">🧳</span><div class="pis" id="pis"></div></div>
+</div>
+<div id="rs" class="scr">
+<h1 id="rt"></h1>
+<div class="rbdg" id="rb"></div>
+<p class="rdsc" id="rd"></p>
+<div class="share-card" id="sc"></div>
+<div class="bill" id="bl"></div>
+<div class="res-cols" id="rescols">
+<div class="res-col" id="cf"><h3>😬 You forgot</h3><div id="lf"></div></div>
+<div class="res-col" id="cr"><h3>🤷 Questionable choices</h3><div id="lr"></div></div>
+</div>
+<div class="packed-strip" id="ps"><h3>📦 You packed</h3><div class="packed-icons-result" id="pir"></div></div>
+<div class="ct"><p>1,229 performers told us about their real contracts.<br><a href="https://tally.so/r/jaLveQ" target="_blank">Add yours.</a></p><span class="st">whatdoescircuspay.com</span></div>
+<button class="btn bo" onclick="reset()">Pack again</button>
+</div>
+</div>
+
+<div class="page-bottom">
+  <p>The circus pay survey is open and anonymous. <a href="https://tally.so/r/jaLveQ" target="_blank">Add yours.</a></p>
+  <p>Follow <a href="https://instagram.com/thecircusstories" target="_blank">@thecircusstories</a> on Instagram for updates, interviews, and more.</p>
+</div>
+
+<script>
+var IT=[
+{i:'🛂',n:'Passport',c:'e',w:.2,m:'Good luck at the airport.'},
+{i:'📋',n:'Contract (printed)',c:'e',w:.3,m:"Don't know your own terms."},
+{i:'📄',n:'Tax documents',c:'e',w:.3,m:'Tax season will hurt.'},
+{i:'🔌',n:'Adapter plugs',c:'e',w:.3,m:'Day one. Dead phone. No alarm.'},
+{i:'🩹',n:'Sports tape',c:'e',w:.2,m:"Looks like you'll try buying it on the road then."},
+{i:'💾',n:'Music backup (USB)',c:'e',w:.1,m:'Bluetooth fails mid-show.'},
+{i:'👗',n:'Costume',c:'e',w:2.5,m:'Performing in... what?'},
+{i:'👟',n:'Sports shoes',c:'e',w:1.0,m:'Who needs comfy shoes anyway.'},
+{i:'🔋',n:'Phone charger',c:'e',w:.3,m:'Dead phone by noon.'},
+{i:'🪡',n:'Sewing kit',c:'e',w:.3,m:'Costume rips premiere night.'},
+{i:'🧘',n:'Foam roller',c:'s',w:1.5},
+{i:'💪',n:'Resistance bands',c:'s',w:.5},
+{i:'🔗',n:'Carabiners & swivels',c:'s',w:1.2},
+{i:'🤸',n:'Handstand blocks',c:'s',w:3.0},
+{i:'🔨',n:'Massage gun',c:'s',w:1.5},
+{i:'🎨',n:'Makeup kit',c:'s',w:2.5},
+{i:'🍫',n:'Protein bars',c:'s',w:1.0},
+{i:'👂',n:'Earplugs',c:'s',w:.1},
+{i:'😴',n:'Eye mask',c:'s',w:.1},
+{i:'🧴',n:'Rosin',c:'s',w:.4},
+{i:'📓',n:'Notepad',c:'s',w:.4},
+{i:'👖',n:'Leggings',c:'s',w:.5},
+{i:'🔀',n:'Extra charging cables',c:'s',w:.4},
+{i:'🫗',n:'Water bottle',c:'s',w:.5},
+{i:'🩲',n:'Flesh-coloured underwear',c:'s',w:.2},
+{i:'🧘',n:'Yoga mat',c:'s',w:2.0},
+{i:'🐅',n:'Tiger balm',c:'s',w:.3},
+{i:'🍪',n:'Snacks from home',c:'s',w:.8},
+{i:'🔊',n:'Portable speaker',c:'s',w:.6},
+{i:'♨️',n:'Hot water bottle',c:'s',w:.5},
+{i:'🧣',n:'Thermals',c:'s',w:.6},
+{i:'🩴',n:'Flip flops',c:'s',w:.4},
+{i:'🖤',n:'Gaffer tape',c:'s',w:.5},
+{i:'🎴',n:'Deck of cards',c:'s',w:.2},
+{i:'🌬️',n:'Tiny fan',c:'s',w:.7},
+{i:'💄',n:'Show makeup',c:'s',w:1.5},
+{i:'🎗️',n:'Aerial straps',c:'s',w:6.0,ap:'aerial'},
+{i:'🤾',n:'Handstand canes',c:'s',w:22.0,os:true,ap:'hb'},
+{i:'🤹',n:'Juggling clubs',c:'s',w:3.5,ap:'other'},
+{i:'🎪',n:'Aerial silks',c:'s',w:5.0,ap:'aerial'},
+{i:'⛓️',n:'Aerial chains',c:'s',w:18.0,os:true,ap:'aerial'},
+{i:'⭕',n:'Aerial hoop / lyra',c:'s',w:10.0,os:true,ap:'aerial'},
+{i:'🔵',n:'Hula hoops',c:'s',w:3.0,os:true,ap:'other'},
+{i:'🎯',n:'Juggling balls',c:'s',w:2.0,ap:'other'},
+{i:'🧘',n:'Second foam roller',c:'f',w:1.5,r:'You know who you are.'},
+{i:'🧸',n:'Emotional support plushie',c:'f',w:.5,r:'Some things are more essential than essentials.'},
+{i:'👗',n:'17 leotards',c:'f',w:5.5,r:"You'll wear three."},
+{i:'📚',n:'Book (page 34 forever)',c:'f',w:.6,r:'Same page as last tour.'},
+{i:'🔮',n:'Lucky crystal',c:'f',w:1.0,r:'Mercury is in retrograde.'},
+{i:'🛏️',n:'Your own pillow',c:'f',w:1.8,r:'Hotel pillows are crimes.'},
+{i:'🧂',n:'Entire spice rack',c:'f',w:3.5,r:'Catering bland? Prepared.'},
+{i:'✨',n:'Fairy lights',c:'f',w:.4,r:'Dressing room vibes since 2015.'},
+{i:'🎸',n:"Guitar (can't play)",c:'f',w:4.0,r:'"Learning" for four years.'},
+{i:'📔',n:'Journal (write once)',c:'f',w:.5,r:'"Day 1. Tired." No day 2.'},
+{i:'👠',n:'3 pairs going-out heels',c:'f',w:3.0,r:'Go out twice. In sneakers.'},
+{i:'🎥',n:'Ring light + tripod',c:'f',w:2.5,r:"There's one at the venue."},
+{i:'🪙',n:'Coins from 7 countries',c:'f',w:.8,r:"Can't spend them here."},
+{i:'🎪',n:'A onesie',c:'f',w:.6,r:'Tour bus uniform. Official.'},
+{i:'🛏️',n:'Inflatable mattress',c:'f',w:3.0,r:"Don't trust the accommodation."},
+{i:'🏋️',n:'Actual dumbbells',c:'f',w:12.0,r:'12 kg. In a suitcase. Legend.'},
+{i:'☕',n:'Favourite mug (in a sock)',c:'f',w:.6,r:'Priorities.'},
+{i:'🎃',n:'Halloween costume',c:'f',w:1.0,r:'Just in case.'},
+{i:'🎈',n:'Birthday decorations',c:'f',w:.5,r:'Someone always has a birthday.'},
+{i:'🍿',n:'Snacks for entire cast',c:'f',w:2.5,r:'People pleaser move.'},
+{i:'🎡',n:'Yoga wheel (used once)',c:'f',w:2.0,r:'Still in packaging.'},
+{i:'📽️',n:'Portable projector',c:'f',w:1.5,r:'Movie nights that happen twice.'},
+{i:'🧣',n:'Blanket from home',c:'f',w:2.5,r:'Smells like safety.'},
+{i:'👟',n:'Third pair of trainers',c:'f',w:1.5,r:'Because what if you want to train AND go for a walk AND look cute.'},
+{i:'💊',n:'Entire pharmacy',c:'f',w:3.0,r:'Every disease. Just in case.'},
+{i:'🧴',n:'4 different moisturisers',c:'f',w:1.2,r:'One for each mood.'}
+];
+var INC=23,OPK=12,XTHRESH=15,XCOST=75,OSCOST=75,GT=25,SPAWN=360;
+var S={},onS=0,activeCards=[];
+function sw(id){document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on')});document.getElementById(id).classList.add('on')}
+function shuf(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+
+function startCountdown(){
+  document.getElementById('gw').className='state-countdown';
+  sw('cs');
+  var cd=document.getElementById('countdown-display');
+  var count=3;
+  cd.innerHTML='<div class="countdown-num">'+count+'</div>';
+  var ci=setInterval(function(){
+    count--;
+    if(count>0){cd.innerHTML='<div class="countdown-num">'+count+'</div>'}
+    else{clearInterval(ci);cd.innerHTML='<div class="countdown-go">GO!</div>';setTimeout(go,400)}
+  },700);
+}
+
+function go(){
+S={p:[],t:GT,run:true,spawning:true,pool:shuf(IT.slice()),ix:0,iv:[],tw:0,lane:0};onS=0;activeCards=[];
+document.getElementById('ga').innerHTML='';document.getElementById('pis').innerHTML='';
+document.getElementById('tm').textContent=GT;document.getElementById('tm').classList.remove('urg');
+document.getElementById('hi').textContent='0 items \xb7 0 kg';
+document.getElementById('hw').textContent='';document.getElementById('hw').className='hw';
+document.getElementById('bf').style.width='0%';document.getElementById('bf').className='brf';
+document.getElementById('gw').className='state-game';
+sw('gs');
+S.iv.push(setInterval(function(){if(!S.run)return;S.t--;document.getElementById('tm').textContent=S.t;if(S.t<=8)document.getElementById('tm').classList.add('urg');if(S.t<=0){S.spawning=false;clearInterval(S.iv[1]);document.getElementById('tm').textContent='0';setTimeout(function(){end()},2000)}},1000));
+S.iv.push(setInterval(function(){if(!S.spawning)return;var a=document.getElementById('ga');var maxNow=a.getBoundingClientRect().width>500?14:6;if(onS<maxNow)sp()},SPAWN));
+var isDesktop=document.getElementById('ga').getBoundingClientRect().width>500;
+if(isDesktop){for(var i=0;i<5;i++)setTimeout(sp,80+i*150)}
+else{setTimeout(sp,100);setTimeout(sp,500);setTimeout(sp,900)}
+}
+function sp(){
+if(!S.spawning)return;
+if(S.ix>=S.pool.length)return;
+var item=S.pool[S.ix++];var a=document.getElementById('ga');var R=a.getBoundingClientRect();var isD=R.width>500;
+var c=document.createElement('div');c.className='ic';
+c.innerHTML='<span class="ii">'+item.i+'</span><span class="inn">'+item.n+'</span>';
+var CARD_H=36,CARD_W=150,MIN_GAP_V=4;
+var mT=R.height-CARD_H-8;
+var chosenTop,chosenLeft;
+if(isD){
+chosenTop=findOpenSpot(mT,CARD_H+MIN_GAP_V,'top');
+c.style.right='-200px';c.style.top=chosenTop+'px';chosenLeft=0;
+}else{
+var halfW=Math.floor((R.width-12)/2);
+var lane=S.lane%2;
+S.lane++;
+chosenLeft=lane===0?4:halfW+8;
+chosenLeft+=Math.random()*Math.max(halfW-CARD_W-4,0);
+c.style.left=chosenLeft+'px';c.style.top='-42px';chosenTop=0;
+}
+var cardInfo={el:c,top:chosenTop,left:chosenLeft,born:Date.now()};
+activeCards.push(cardInfo);
+c.addEventListener('click',function(e){grab(e,c,item,cardInfo)});
+c.addEventListener('touchstart',function(e){grab(e,c,item,cardInfo)},{passive:false});
+a.appendChild(c);onS++;
+var st=Date.now(),life=isD?4000:2800,sTop=chosenTop;
+function an(){if(!S.run){removeCard(c,cardInfo);return}
+var p=(Date.now()-st)/life;
+if(p>=1){if(!c.dataset.d){c.classList.add('mis');onS--;c.dataset.d='1';removeActiveCard(cardInfo);setTimeout(function(){c.remove()},350)}return}
+if(isD){c.style.right=(-200+p*(R.width+240))+'px';c.style.top=(sTop+Math.sin(p*Math.PI*2)*8)+'px'}
+else{c.style.top=(-42+p*(R.height+70))+'px'}
+requestAnimationFrame(an)}
+requestAnimationFrame(an);
+}
+function findOpenSpot(maxVal,slotSize,dim){
+var used=activeCards.filter(function(ac){return !ac.el.dataset.d}).map(function(ac){return ac[dim]});
+for(var attempt=0;attempt<30;attempt++){
+var candidate=4+Math.random()*maxVal;var ok=true;
+for(var j=0;j<used.length;j++){if(Math.abs(candidate-used[j])<slotSize){ok=false;break}}
+if(ok)return candidate;}
+var best=4,bestDist=0;
+for(var a2=0;a2<10;a2++){var cand=4+Math.random()*maxVal;var minD=999;
+for(var k=0;k<used.length;k++){var dd=Math.abs(cand-used[k]);if(dd<minD)minD=dd}
+if(minD>bestDist){bestDist=minD;best=cand}}
+return best;
+}
+function removeActiveCard(ci){var idx=activeCards.indexOf(ci);if(idx>-1)activeCards.splice(idx,1)}
+function removeCard(c,ci){c.remove();onS--;removeActiveCard(ci)}
+function grab(e,c,item,cardInfo){
+if(e)e.preventDefault();if(c.dataset.d)return;
+if(S.p.some(function(p){return p.n===item.n})){c.classList.add('shk');setTimeout(function(){c.classList.remove('shk')},200);return}
+c.dataset.d='1';c.classList.add('grb');S.p.push(item);S.tw+=item.w;onS--;removeActiveCard(cardInfo);uH(item);setTimeout(function(){c.remove()},280);
+}
+function uH(item){
+var n=S.p.length,w=S.tw;
+document.getElementById('hi').textContent=n+' items \xb7 '+w.toFixed(1)+' kg';
+var hw=document.getElementById('hw');
+if(w>INC){hw.textContent='\u26a0 '+(w-INC).toFixed(1)+' kg over';hw.className='hw ov'}else{hw.textContent='';hw.className='hw'}
+var pct=Math.min((w/INC)*100,100);
+var b=document.getElementById('bf');b.style.width=pct+'%';
+b.className=w>INC+XTHRESH?'brf wo':w>INC?'brf ov':'brf';
+var d=document.createElement('div');d.className='pd '+(w>INC?'ex':'ok');d.textContent=item.i;
+document.getElementById('pis').appendChild(d);
+}
+function end(){
+S.run=false;S.iv.forEach(clearInterval);
+document.getElementById('gw').className='state-result';
+var p=S.p,w=S.tw;
+var over=Math.max(0,w-INC);
+var xs=Math.floor(over/XTHRESH);
+var rem=over-(xs*XTHRESH);
+var owF=Math.round(rem*OPK);
+var xsF=xs*XCOST;
+var osItems=p.filter(function(x){return x.os});
+var osF=osItems.length*OSCOST;
+var tot=owF+xsF+osF;
+var es=IT.filter(function(x){return x.c==='e'});
+var pe=p.filter(function(x){return x.c==='e'});
+var me=es.filter(function(e){return !p.some(function(x){return x.n===e.n})});
+var fp=p.filter(function(x){return x.c==='f'});
+var eR=pe.length/es.length;
+var fR=fp.length/Math.max(p.length,1);
+var heaviest=p.reduce(function(a,b){return a.w>b.w?a:b},{w:0,n:'',ap:''});
+var apItems=p.filter(function(x){return x.ap});
+var apType='circus artist';
+if(apItems.some(function(x){return x.ap==='hb'}))apType='handbalancer';
+else if(apItems.some(function(x){return x.ap==='aerial'}))apType='aerialist';
+var t,b,d;
+if(p.length<=3){t='Travelling light.';b='\ud83e\udea7 The Minimalist';d='Either very confident or very underprepared.';}
+else if(w>INC+XTHRESH*2){t='You packed your entire life.';b='\ud83c\udf0d Moving Abroad';d="This isn't a tour. This is moving countries.";}
+else if(heaviest.w>=15){t='One item. One problem.';b='\ud83c\udfcb\ufe0f The Apparatus Hauler';
+d=heaviest.n+' alone is '+heaviest.w+' kg. Welcome to every '+apType+"'s airport experience. Negotiate luggage allowance next time.";}
+else if(eR>=.8&&fR<=.1){t="You've done this before.";b='\ud83c\udfaf Touring Veteran';d='Essentials in. Nonsense out.';}
+else if(eR>=.5&&fR>=.3){var pick=fp[0]?fp[0].n:'questionable items';t='Organised chaos.';b='\u2728 The Realist';d='Got the passport AND the '+pick+'.';}
+else if(eR<=.3&&fR>=.3){var pick2=fp[0]?fp[0].n:'nonsense';var miss=me[0]?me[0].n:'half the essentials';t='Bold choices.';b='\ud83c\udfaa Chaos Agent';d='Forgot the '+miss+'. Brought the '+pick2+'.';}
+else if(eR<=.4){t='First contract energy.';b='\ud83e\udee0 The Rookie';d="You'll figure it out. Probably the hard way.";}
+else if(over>10){t='Your back already hurts.';b='\ud83e\uddf3 The Overpacker';d=(xs>=1?(xs+1)+' suitcases.':'Overweight.')+' Your back knows.';}
+else{t='Somewhere in between.';b='\ud83e\udd39 The Improviser';d='Some essentials. Some choices. The usual.';}
+document.getElementById('rt').textContent=t;
+document.getElementById('rb').textContent=b;
+document.getElementById('rd').textContent=d;
+var sc=document.getElementById('sc');
+var sh='<div class="big-num">'+w.toFixed(1)+' kg</div><div class="big-label">packed for a 3-month tour</div>';
+sh+='<div class="share-stats">';
+sh+='<div class="share-stat"><div class="sn">'+p.length+'</div><div class="sl">items</div></div>';
+sh+='<div class="share-stat"><div class="sn">'+pe.length+'/'+es.length+'</div><div class="sl">essentials</div></div>';
+sh+='<div class="share-stat"><div class="sn '+(tot>0?'neg':'grn')+'">'+'\u20ac'+tot+'</div><div class="sl">luggage fees</div></div>';
+sh+='</div>';
+if(tot>0){sh+='<div class="share-pct">\u20ac'+tot+' at check-in. Maybe add "luggage included" to the contract next time.</div>'}
+else{sh+='<div class="share-pct none">Under 23 kg. You travel clean.</div>'}
+sc.innerHTML=sh;
+var bl=document.getElementById('bl');
+var bh='<div class="br"><span>Your suitcase</span><span>'+w.toFixed(1)+' kg</span></div>';
+bh+='<div class="br"><span>Contract covers</span><span>23 kg</span></div>';
+if(over>0&&rem>0)bh+='<div class="br"><span>Overweight ('+rem.toFixed(1)+' kg \xd7 \u20ac'+OPK+')</span><span class="neg">\u20ac'+owF+'</span></div>';
+if(xs>0)bh+='<div class="br"><span>Extra suitcase'+(xs>1?'s':'')+' ('+xs+' \xd7 \u20ac'+XCOST+')</span><span class="neg">\u20ac'+xsF+'</span></div>';
+if(osItems.length>0){var osNames=osItems.map(function(x){return x.n}).join(', ');bh+='<div class="br"><span>Oversized ('+osNames+')</span><span class="neg">\u20ac'+osF+'</span></div>';}
+bh+=tot>0?'<div class="br"><span>Total</span><span class="neg">\u20ac'+tot+'</span></div>':'<div class="br"><span>Total</span><span class="ok">\u20ac0</span></div>';
+bl.innerHTML=bh;
+var lf=document.getElementById('lf');lf.innerHTML='';
+var cf=document.getElementById('cf');
+if(me.length===0){cf.style.display='none'}
+else{cf.style.display='block';me.forEach(function(x){var d=document.createElement('div');d.className='ri em';d.innerHTML='<span class="rx">'+x.i+'</span><div><div class="rn">'+x.n+'</div><div class="rm">'+x.m+'</div></div>';lf.appendChild(d)})}
+var lr=document.getElementById('lr');lr.innerHTML='';
+var cr=document.getElementById('cr');
+if(fp.length===0){cr.style.display='none'}
+else{cr.style.display='block';fp.forEach(function(x){var d=document.createElement('div');d.className='ri';d.innerHTML='<span class="rx">'+x.i+'</span><div><div class="rn">'+x.n+'</div><div class="rm">'+x.r+'</div></div>';lr.appendChild(d)})}
+var pir=document.getElementById('pir');pir.innerHTML='';
+p.forEach(function(x){var d=document.createElement('div');d.className='pir'+(x.c==='e'?' ess':'');d.innerHTML=x.i+'<span class="pir-tip">'+x.n+' ('+x.w+'kg)</span>';pir.appendChild(d)});
+sw('rs');
+}
+function reset(){document.getElementById('gw').className='state-start';sw('ss')}
+document.addEventListener('keydown',function(e){if(e.code==='Space'&&document.getElementById('ss').classList.contains('on')){e.preventDefault();startCountdown()}});
+</script>
+
+<script>
+// When embedded in an iframe, tell parent the height after state changes
+(function() {
+  if (window.parent === window) return; // not in iframe, skip
+  function postHeight() {
+    var h = document.documentElement.scrollHeight;
+    window.parent.postMessage({ type: 'circusgame-resize', height: h }, '*');
+  }
+  // Watch for state class changes on #gw
+  var gw = document.getElementById('gw');
+  if (gw) {
+    var obs = new MutationObserver(function() {
+      setTimeout(postHeight, 100);
+    });
+    obs.observe(gw, { attributes: true, attributeFilter: ['class'] });
+  }
+  // Initial post
+  window.addEventListener('load', function() { setTimeout(postHeight, 200); });
+  // Also on resize within
+  window.addEventListener('resize', postHeight);
+})();
+</script>
+
+</body>
+</html>
